@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function App() {
+  const [itemArray, setItemArray] = useState(["Item 1", "Item 2"]);
 
-    const [loveWillys, setLoveWillys] = useState();
+  const itemElements = itemArray.map((item) => <p key={item}>{item}</p>);
 
-    function changeWillys() {
-        setLoveWillys( prevState => !prevState)
-    }
+  function addItem() {
+    setItemArray((prevState) => [...itemArray, `Item ${itemArray.length + 1}`]);
+  }
 
-
-    return(
-        <div>
-            <h1>Do you love willys?</h1>
-            <h2 onClick={changeWillys}>{loveWillys ? "Yes" : "Nope"}</h2>
-        </div>
-    )
+  return (
+    <div>
+      <h1>ToDo</h1>
+      <button onClick={addItem}>Add item</button>
+      <div>{itemElements}</div>
+    </div>
+  );
 }

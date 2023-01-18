@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 
 export default function App() {
-  const [itemArray, setItemArray] = useState(["Item 1", "Item 2"]);
+  const [contact, setContact] = useState({
+    firstName: "John",
+    lastName: "Pills",
+    phone: "+1 (709) 555-1212",
+    email: "thisismyrealemail.com",
+    isFavouirte: false
+  });
 
-  const itemElements = itemArray.map((item) => <p key={item}>{item}</p>);
+let starIcon = contact.isFavouirte ? "star-filled.png" : "star-empty.png"
 
-  function addItem() {
-    setItemArray((prevState) => [...itemArray, `Item ${itemArray.length + 1}`]);
-  }
+function toggleFavourote() {
+console.log("Checked")
+}
 
   return (
-    <div>
-      <h1>ToDo</h1>
-      <button onClick={addItem}>Add item</button>
-      <div>{itemElements}</div>
-    </div>
+    <main>
+      <article className="card">
+        <img className="card--image" src="" alt="" />
+        <div>
+          <img className="card--favourite" src={`./images/{starIcon}`} alt="" />
+          <h2 className="card--name">{contact.firstName} {contact.lastName}</h2>
+          <p className="card--contact">{contact.phone}</p>
+          <p className="card--contact">{contact.email}</p>
+        </div>
+      </article>
+    </main>
   );
 }
